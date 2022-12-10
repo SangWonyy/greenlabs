@@ -1,7 +1,30 @@
-import React from "react";
+import React, { ChangeEvent, useCallback, useState } from "react";
 import { Input, Button } from "components";
+import { useAddFarm } from "@hooks/useAddFarm";
 
 const FarmAddForm = () => {
+  const { requestAddFarm } = useAddFarm();
+  const [name, setName] = useState<string>();
+  const [crop, setCrop] = useState<string>();
+
+  const cropOnChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const cropValue = e.target.value;
+    setCrop(cropValue);
+  }, []);
+
+  const nameOnChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const nameValue = e.target.value;
+    setName(nameValue);
+  }, []);
+
+  const clickHandler = () => {
+    if (!name || !crop) {
+      alert("농장 추가 실패");
+      return;
+    }
+
+    requestAddFarm({ name, crop });
+  };
   /*TODO: Q2-2 API 통신 (Farm 의 문제를 다 끝내고 진행하셔도 무방합니다.)
     - api/addfarm 경로로 {name,crop} 값을 post 로 요청합니다.
     TODO: Q4 Portal 을 활용하여 모달을 구현합니다.
@@ -20,15 +43,15 @@ const FarmAddForm = () => {
       <div className="flex flex-col gap-2">
         <div className="flex flex-col">
           <span>농장 명</span>
-          <Input name="name" type="text" />
+          <Input name="name" type="text" onChange={nameOnChange} />
         </div>
 
         <div className="flex flex-col">
           <span>작물명</span>
-          <Input name="name" type="text" />
+          <Input name="name" type="text" onChange={cropOnChange} />
         </div>
       </div>
-      <Button>저장</Button>
+      <Button onClick={clickHandler}>저장</Button>
     </div>
   );
 };

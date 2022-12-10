@@ -21,4 +21,10 @@ interface UserInfoType {
   id?: string;
   name?: string;
 }
-export type { ProductionType, HouseType, FarmsType, UserInfoType };
+
+interface AddFormType {
+  name: string;
+  crop: string;
+}
+
+export type { ProductionType, HouseType, FarmsType, UserInfoType, AddFormType };
