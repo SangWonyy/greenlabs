@@ -1,7 +1,7 @@
 import { atom } from "recoil";
-import { TUserInfo } from "@type/userInfo.type";
+import { UserInfoType } from "../libs/type";
 
-export const UserInfoState = atom<TUserInfo>({
+export const UserInfoState = atom<UserInfoType>({
   key: "UserInfoState",
   default: { id: undefined, contents: undefined },
 });

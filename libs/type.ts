@@ -8,6 +8,7 @@ interface HouseType {
   name: string;
   active: boolean;
 }
+
 interface FarmsType {
   id: number;
   crops: string;
@@ -16,4 +17,8 @@ interface FarmsType {
   houses?: HouseType[];
 }
 
-export type { ProductionType, HouseType, FarmsType };
+interface UserInfoType {
+  id?: string;
+  name?: string;
+}
+export type { ProductionType, HouseType, FarmsType, UserInfoType };
