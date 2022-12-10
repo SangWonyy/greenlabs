@@ -24,7 +24,11 @@ const Farm = () => {
   return (
     <div className="px-2 flex flex-col gap-2">
       {farmList.map((farmData) => {
-        const { id, crops, name, houses } = farmData;
+        const { id, crops, name, annualProduction, houses } = farmData;
+        const productionTotal = annualProduction.reduce((acc, value) => {
+          const { Production } = value;
+          return acc + Production;
+        }, 0);
 
         return (
           <FarmList
@@ -32,7 +36,7 @@ const Farm = () => {
             id={id}
             crops={crops}
             name={name}
-            productionTotal={100}
+            productionTotal={productionTotal}
             HouseActive={houseActive}
             houses={houses}
           />
