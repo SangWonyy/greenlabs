@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
+import { useRecoilValue } from "recoil";
+import { UserInfoState } from "@state/UserState";
 
 const Header = () => {
   const router = useRouter();
+  const { id, name } = useRecoilValue(UserInfoState);
+
+  useEffect(() => {
+    const needLogin = !id || !name;
+    if (!needLogin) return;
+
+    alert("다시 로그인을 시도해주세요");
+    router.replace("/");
+  }, []);
 
   return (
     <header className="border-b p-2 py-4">
@@ -10,10 +21,9 @@ const Header = () => {
         <h1 className="font-bold" onClick={() => router.push("home")}>
           농장관리시스템
         </h1>
-        {/* TODO: Q1-2 로그인 상태 관리 
-            - 아래 태그에 사용자 명과 아이디가 출력 되도록 해주세요
-        */}
-        <span className="text-sm">사용자 명(사용자 아이디)</span>
+        <span className="text-sm">
+          {name}({id})
+        </span>
       </div>
     </header>
   );
