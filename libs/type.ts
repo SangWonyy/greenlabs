@@ -27,4 +27,10 @@ interface AddFormType {
   crop: string;
 }
 
-export type { ProductionType, HouseType, FarmsType, UserInfoType, AddFormType };
+interface ModalType {
+  isOpen: boolean;
+  title?: string;
+  subTitle?: string;
+}
+
+export type { ProductionType, HouseType, FarmsType, UserInfoType, AddFormType, ModalType };
