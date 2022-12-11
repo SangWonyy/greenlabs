@@ -1,13 +1,13 @@
 import React from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { ModalState } from "@state/ModalState";
 import { Button } from "@components/index";
 
 const InnerModal = () => {
-  const { title, subTitle } = useRecoilValue(ModalState);
-  const setRecoilState = useSetRecoilState(ModalState);
+  const [modalData, setModal] = useRecoilState(ModalState);
+  const { title, subTitle } = modalData;
   const clickHandler = () => {
-    setRecoilState({ isOpen: false });
+    setModal({ isOpen: false });
   };
 
   return (
