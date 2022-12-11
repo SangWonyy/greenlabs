@@ -1,8 +1,11 @@
 import React, { ChangeEvent, useCallback, useState } from "react";
 import { Input, Button } from "components";
 import { useAddFarm } from "@hooks/useAddFarm";
+import { useSetRecoilState } from "recoil";
+import { ModalState } from "@state/ModalState";
 
 const FarmAddForm = () => {
+  const setRecoilState = useSetRecoilState(ModalState);
   const { requestAddFarm } = useAddFarm();
   const [name, setName] = useState<string>();
   const [crop, setCrop] = useState<string>();
@@ -19,7 +22,7 @@ const FarmAddForm = () => {
 
   const clickHandler = () => {
     if (!name || !crop) {
-      alert("농장 추가 실패");
+      setRecoilState({ isOpen: true, title: "농장 추가 실패!" });
       return;
     }
 

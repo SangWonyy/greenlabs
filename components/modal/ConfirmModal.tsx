@@ -1,10 +1,10 @@
 import React from "react";
-import ModalBackground from "@components/modal/ModalBackground";
 import InnerModal from "@components/modal/InnerModal";
+import Portal from "@components/Portal";
 
 const ConfirmModal = () => (
-  <ModalBackground>
+  <Portal>
     <InnerModal />
-  </ModalBackground>
+  </Portal>
 );
 export default ConfirmModal;
