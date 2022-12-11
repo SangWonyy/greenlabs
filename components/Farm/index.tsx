@@ -1,9 +1,9 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { useGetFarm } from "@hooks/useGetFarm";
 import FarmList from "@components/Farm/FarmList";
 
 const Farm = () => {
-  const { loading, farmList } = useGetFarm();
+  const { loading, farmList, clickHouse } = useGetFarm();
   /* TODO: Q2-1 api 통신
   - api/farm 경로로 get)api 요청하면 Array<FarmsType> 형태의 데이터가 호출됩니다. (axios, fetch 등 사용은 자율)
   - 호출 받은 데이터를 활용하여 동일 경로에 있는 FarmList 컴포넌트를 랜더링 해주세요 예시 화면은 이미지를 확인 하세요.
@@ -13,10 +13,6 @@ const Farm = () => {
   /* TODO: Q3-2 화면 조작
   - 랜더링 된 컴포넌트에서 하우스를 동작시키는 함수를 작성해 주세요 역시 예시 이미지를 확인 하세요.
   */
-  const houseActive = useCallback(() => {
-    return;
-  }, []);
-
   if (loading) {
     return <div className="text-center">loading...</div>;
   }
@@ -37,7 +33,7 @@ const Farm = () => {
             crops={crops}
             name={name}
             productionTotal={productionTotal}
-            HouseActive={houseActive}
+            HouseActive={clickHouse}
             houses={houses}
           />
         );
